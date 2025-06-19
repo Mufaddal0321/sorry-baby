@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apology Card</title>
+
+<!-- A friendly, modern font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>
+    :root {
+        --card-width: 320px;
+        --card-height: 200px;
+        --duration: 0.8s;
+        --front-bg: #ffecd1;      /* warm pastel */
+        --back-bg: #ffe0e9;       /* light blush */
+        --accent: #ff7f50;        /* coral accent */
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at center, #fafafa 0%, #e6e6e6 100%);
+    }
+
+    /* Card container sets up 3‑D flip space */
+    .card {
+        width: var(--card-width);
+        height: var(--card-height);
+        perspective: 1000px;
+        cursor: pointer;
+    }
+
+    /* Inner wrapper we actually rotate */
+    .card__inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform var(--duration) cubic-bezier(0.5, 1, 0.3, 1);
+    }
+
+    /* Flip when we add .is-flipped */
+    .card.is-flipped .card__inner {
+        transform: rotateY(180deg);
+    }
+
+    /* Front / back faces */
+    .card__face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        backface-visibility: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        text-align: center;
+    }
+
+    .card__face--front {
+        background: var(--front-bg);
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--accent);
+    }
+
+    .card__face--back {
+        background: var(--back-bg);
+        transform: rotateY(180deg);
+        font-size: 1.05rem;
+        line-height: 1.5;
+        color: #444;
+    }
+
+    /* Optional little hover effect for fun */
+    .card:hover .card__inner:not(.is-flipped) {
+        transform: translateY(-4px);
+    }
+</style>
+</head>
+<body>
+
+<div class="card" id="apologyCard">
+    <div class="card__inner">
+        <div class="card__face card__face--front">
+            Tap to open
+        </div>
+        <div class="card__face card__face--back">
+            <p>
+                I’m really sorrryyyy!<br/>
+                Pakka, I’ll never be late again—<br/>
+                in fact I’ll come 20&nbsp;minutes early from tomorrow.<br/><br/>
+                Please forgive me.<br/>
+                I love you so much—<br/>
+                to heaven and back! ❤️
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple flip toggle
+    document.getElementById("apologyCard").addEventListener("click", function () {
+        this.classList.toggle("is-flipped");
+    });
+</script>
+
+</body>
+</html>
